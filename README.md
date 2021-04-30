@@ -50,40 +50,7 @@ ip:"" port:"" protocol:""
 
 ### 提升權限問題
 
-### 案例分析一: Who are you
-
-網站毛很多：
-- user-agent
-- 不想被 track
-- 請求要來自瑞典
-- 要會說瑞典話
-- 這個網站只能在 2018 年工作
-
-用 Node.js 解，附上程式碼 :3
-```js=
-let axios = require('axios');
-
-axios
-    .get('http://mercury.picoctf.net:34588/', 
-{ headers: { 'User-Agent': 'picobrowser',
-        'Referer': 'http://mercury.picoctf.net:34588/',
-        'Date': 'Tue, 15 Nov 2018 08:12:31 GMT',
-        'DNT': '1',
-        'Accept-Language': 'sv',
-        'Content-Language': 'sv',
-        'X-Forwarded-For': '93.182.156.49'
- }  } )
-    .then(response => {
-      console.log(response);
-      // here will be cheerio scraping
-    })
-    .catch(function(e) {
-      console.log(e);
-    });
-
-```
-
-### 案例分析二: Most Cookies
+### 案例分析: Most Cookies
 先看題目給的 Source code :
 ```python=
 import random
@@ -173,6 +140,39 @@ BTW: 本次使用的加解密套件為 [Flask Session Cookie Decoder/Encoder](ht
 ## SSRF
 
 ## CSRF
+
+### 案例分析: Who are you
+
+網站毛很多：
+- user-agent
+- 不想被 track
+- 請求要來自瑞典
+- 要會說瑞典話
+- 這個網站只能在 2018 年工作
+
+用 Node.js 解，附上程式碼 :3
+```js=
+let axios = require('axios');
+
+axios
+    .get('http://mercury.picoctf.net:34588/', 
+{ headers: { 'User-Agent': 'picobrowser',
+        'Referer': 'http://mercury.picoctf.net:34588/',
+        'Date': 'Tue, 15 Nov 2018 08:12:31 GMT',
+        'DNT': '1',
+        'Accept-Language': 'sv',
+        'Content-Language': 'sv',
+        'X-Forwarded-For': '93.182.156.49'
+ }  } )
+    .then(response => {
+      console.log(response);
+      // here will be cheerio scraping
+    })
+    .catch(function(e) {
+      console.log(e);
+    });
+
+```
 
 ## SQL Injection
 
