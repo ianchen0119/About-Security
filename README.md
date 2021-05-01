@@ -2,8 +2,8 @@
 
 ## 弱點掃描教學
 
-- 課程工具
-    - [CDX](https://cdx.nchc.org.tw/)
+整理一些常用的掃描工具:
+
 - DNS
     - dns resource record 
     - nslookup  
@@ -21,18 +21,19 @@
 - 網路掃描
 - Others
     - [Elasticsearch](https://zh.wikipedia.org/wiki/Elasticsearch)
+### 學會 Google Search ，你也能當駭客!
 
-Keyword: `hosts`
+Google 搜尋引擎可以讓我們加入指定條件，搜尋到目標文件，舉例:
+1. 看看誰家的 Server 洩漏出不該公開的東西
 ```
-shadow etc intitle:"index of" site:edu.tw
+intitle:"index of" site:edu.tw
+```
+2. 以運行 PHP 後端的伺服器來說，許多設定細節都可以從 `phpinfo()` 中得到，如果版本過於老舊 & 無意間開啟的不安全的設定，
+就有機會變成駭客的活箭靶喔!
+```
+intitle:"phpinfo" site:edu.tw
 ```
 
-http://www.scu.edu.tw/ba/1.php/RK=0/RS=_L3U41PkXL25Sqc.dn5eBs0qPmo-
-
-![](https://i.imgur.com/3YiBj3h.png)
-```
-ip:"" port:"" protocol:""
-```
 ## 漏洞回報平台
 ### HITCON Zeroday
 
@@ -44,8 +45,20 @@ ip:"" port:"" protocol:""
 
 ## 資訊洩漏
 
-## 原始碼洩漏
+## Sensitive Data Exposure
 
+### 案例分析一: git server 忘記關
+以 Hitcon Zeroday 上通報的漏洞為例
+> [ZD-2020-00947](https://zeroday.hitcon.org/vulnerability/ZD-2020-00947)
+
+因為受害單位使用私有的 Git server 做專案的版本控制，卻有沒有在 Git sever 外部做存取權限的管制，導致相關原始碼被看光光，並成功的被登入繞過以及遠端代碼執行。
+### 案例分析二: 伺服器安全組態設定錯誤，文件看光光
+以 Hitcon Zeroday 上通報的漏洞為例
+> [ZD-2019-01264](https://zeroday.hitcon.org/vulnerability/ZD-2019-01264)
+
+因為伺服器管理者錯誤設定了伺服器的安全組態，導致有心人士可以在目錄中查找到網站原始碼:
+![](https://zeroday.hitcon.org/api/vulnerability/4877/attachments/d6e11a622df820fbf4b262efd5d2b471)
+進而從原始碼當中取得資料庫的連線資訊\|/
 ## Broken Access Control
 
 ### 提升權限問題
