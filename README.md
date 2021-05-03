@@ -21,6 +21,10 @@
 - 網路掃描
 - Others
     - [Elasticsearch](https://zh.wikipedia.org/wiki/Elasticsearch)
+- [synk](https://github.com/snyk/snyk)
+    - CLI and build-time tool to find & fix known vulnerabilities
+    - 實用的工具，推推👍🏿
+
 ### 學會 Google Search ，你也能當駭客!
 
 Google 搜尋引擎可以讓我們加入指定條件，搜尋到目標文件，舉例:
@@ -149,6 +153,38 @@ BTW: 本次使用的加解密套件為 [Flask Session Cookie Decoder/Encoder](ht
 ## XXE
 
 ## XSS
+
+### XSS Basic
+- 反射型 / Reflected XSS
+- 儲存型 / Stored XSS
+- DOM Based XSS
+
+### Event Handler
+- `<svg/onload=alert(1)>`
+- `<img src=# onerror=alert(1)>`
+- `<input onfocus=alert(1)>`
+
+### javascript: Scheme
+- `<a href="javascript:alert(1)">Click Me</a>`
+- `location.replace("javascript:alert(1)");`
+
+### 現代框架的 data binding
+
+以 React.js 來說，都會使用 `{}` 來做 data-binding
+因此對於輸入有基本的跳脫機制，防止 XSS
+但對於動態屬性綁定（dynamic attribute values）並沒有這項保護，因此有可能產生 XSS
+
+example:
+
+```jsx
+<form action={data}></form>
+```
+
+## CSP: Content Security Policy
+由瀏覽器根據 CSP 控制對外部的請求
+白名單機制
+Content Security Policy (CSP) Quick Reference Guide  
+
 
 ## SSRF
 
